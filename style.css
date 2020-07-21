@@ -1,5 +1,8 @@
 .container {
   display: flex;
 }
+.container #project-sidebar {
+  background-color: grey;
+}
 
 /*# sourceMappingURL=style.css.map */
