@@ -1,7 +1,5 @@
-.container{
-    display: flex;
-
-    #project-sidebar{
-        background-color: grey;
-    }
-}
+@import "variables";
+@import "layout";
+@import "header";
+@import 'inner';
+@import "sidebar";

@@ -1,0 +1,47 @@
+header{
+    height: 50px;
+    padding: 0 2rem;
+    background-color: $color-dark;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .header-left, .header-right{
+        display: flex;
+        align-items: center;
+    }
+
+    .author-details{
+        color: $color-light;
+
+        a{
+            color: $color-main;
+            padding: 0 1rem;
+            border-right: 1px solid $color-light;
+            text-decoration: none;
+        }
+
+        i{ color: $color-light; }
+
+        p{ padding-left: 1rem }
+    }
+
+    #menu-button{
+        background: transparent;
+        border: 0;
+        color: $color-light;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+
+    #new-button{
+        background-color: $color-main;
+        color: white;
+        border: 1px solid $color-main;
+        padding: .25rem .5rem;
+        border-radius: 10px;
+        margin: 0 .5rem;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+}
