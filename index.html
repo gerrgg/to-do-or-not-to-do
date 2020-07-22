@@ -4,25 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> 
+    <script src="https://kit.fontawesome.com/dd960d1f1a.js" crossorigin="anonymous"></script>
+
+    <title>Todo Or Not Todo: That is the question...</title>
 </head>
 <body>
-
+    <header>
+        <div class="header-left">
+            <button id="menu-button"><i class="fas fa-hamburger"></i></button>
+            <button id="new-button"><i class="fas fa-plus-circle"></i> New</button>
+        </div>
+        <div class="header-right author-details">
+            <a href="http://gerrg.com"><i class="fas fa-meh-blank"></i> GERRG.com</a>
+            <a href="https://github.com/gerrgg/to-do-or-not-to-do"><i class="fab fa-github"></i> Source Code</a>
+            <p>Greg <span class="color-main">"GERRG"</span> Bastianelli</p>
+        </div>
+    </header>
     <div class="container">
+
         <div id="project-sidebar">
             <ul>
-                <li>Project 1</li>
-                <li>Project 2</li>
-                <li>Project 3</li>
+                <li class="tab-link" data-target="calendar"><i class="far fa-calendar"></i></i>Calendar</li>
+                <li class="tab-link" data-target="shortcuts"><i class="fas fa-fast-forward"></i>Shortcuts</li>
+                <li class="tab-link" data-target="lists"><i class="fas fa-list-ol"></i>Lists</li>
+                <li class="tab-link" data-target="tags"><i class="fas fa-tag"></i>Tags</li>
             </ul>
         </div>
+
         <div id="project-inner">
+            <h1>Todo or not todo...</h1>
             <ul>
                 <li>TODO 1</li>
                 <li>TODO 2</li>
                 <li>TODO 3</li>
             </ul>
         </div>
+
     </div>
 
     <script src="main.js"></script>
