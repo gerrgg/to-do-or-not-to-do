@@ -60,11 +60,18 @@ header #new-button {
 #project-inner {
   padding: 1rem;
 }
+#project-inner .tab {
+  display: none;
+}
+#project-inner .tab.show {
+  display: block;
+}
 
 #project-sidebar {
   height: 100vh;
   border-right: 5px solid #555;
   background-color: #f7f7f7;
+  visibility: visible;
 }
 #project-sidebar ul {
   margin: 1rem 0;
@@ -78,11 +85,14 @@ header #new-button {
   cursor: pointer;
 }
 #project-sidebar ul li.tab-link i {
-  color: #102542;
+  color: #0874b5;
   padding-right: 1rem;
 }
 #project-sidebar ul li.tab-link:hover {
   background-color: rgba(0, 0, 0, 0.1);
+}
+#project-sidebar ul li.tab-link.active {
+  color: #0874b5;
 }
 
 /*# sourceMappingURL=style.css.map */
