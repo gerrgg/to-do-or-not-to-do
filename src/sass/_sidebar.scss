@@ -2,6 +2,7 @@
     height: 100vh;
     border-right: 5px solid $text-color-light-dark; 
     background-color: $sidebar-bg-color;
+    visibility: visible;
 
     ul{
         margin: 1rem 0;
@@ -20,6 +21,8 @@
             }
 
             &:hover{ background-color: $light-grey; }
+
+            &.active{ color: $color-secondary }
         }
     }
 }
