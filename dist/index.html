@@ -25,18 +25,24 @@
 
         <div id="project-sidebar" style="visibility: visible;">
             <ul>
+                <li class="tab-link active" data-target="lists"><i class="fas fa-list-ol"></i>Lists</li>
                 <li class="tab-link" data-target="calendar"><i class="far fa-calendar"></i></i>Calendar</li>
                 <li class="tab-link" data-target="shortcuts"><i class="fas fa-fast-forward"></i>Shortcuts</li>
-                <li class="tab-link active" data-target="lists"><i class="fas fa-list-ol"></i>Lists</li>
                 <li class="tab-link" data-target="tags"><i class="fas fa-tag"></i>Tags</li>
             </ul>
         </div>
 
         <div id="project-inner">
+            <div id="lists" class="tab show">
+                <div id="projects">
+                    <h2>Projects</h2>
+                    <div id="projects-inner"></div>
+                </div>
+                <div id="todo"></div>
+            </div>
             <div id="calendar" class="tab">Calendar</div>
-            <div id="shortcuts" class="tab">shortcuts</div>
-            <div id="lists" class="tab show">lists</div>
-            <div id="tags" class="tab">tags</div>
+            <div id="shortcuts" class="tab">Shortcuts</div>
+            <div id="tags" class="tab">Tags</div>
         </div>
 
     </div>
