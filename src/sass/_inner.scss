@@ -4,4 +4,40 @@
     .tab{ display: none; }
 
     .tab.show{ display: block; }
+
+    .project{
+        width: 500px;
+        border: 1px solid $color-dark;
+
+        .title{
+            padding: .5rem; 
+            border-bottom: 1px solid $color-dark;
+            background-color: $color-main;
+
+            display: flex;
+            align-items: center;
+
+            h3{ 
+                padding-right: .25rem;
+                margin: 0;
+             }
+
+            p{ 
+                margin: 0;
+                line-height: 33px; 
+            }
+
+        }
+
+        ul.todos{
+            background-color: $color-secondary;
+            color: $color-light;
+            margin: 0; 
+
+            li{
+                padding: 1rem;
+
+            }
+        }
+    }
 }
