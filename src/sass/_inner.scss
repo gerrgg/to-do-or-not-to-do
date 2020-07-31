@@ -1,45 +1,86 @@
 #project-inner{
     padding: 1rem;
+    background-color: $inner-bg-color;
+    width: 100%;
 
     .tab{ display: none; }
 
     .tab.show{ display: block; }
 
     .project{
-        border: 1px solid $color-dark;
-
+        box-shadow: $box-shadow-light;
+        background-color: $color-light;
+        border-radius: 12px;
+        padding: 1rem;
+        
         .title{
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            
+            position: relative;
+            cursor: pointer;
             padding: .5rem; 
-            border-bottom: 1px solid $color-dark;
-            background-color: $color-main;
-
-            display: flex;
-            align-items: center;
+            
 
             h3{ 
                 padding-right: .25rem;
                 margin: 0;
              }
 
-            p{ 
+            p{
+                max-width: 50%;
                 margin: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            &::before{
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 2rem;
+
+                content: "+"
+            }
+
+            &.show::before{
+                content: '_';
+                top: 25%;
+            }
+
+            &.show p{
+                overflow: visible;
             }
 
         }
 
         ul.todos{
-            background-color: $color-secondary;
-            color: $color-light;
+            display: none;
             margin: 0; 
             padding: 0;
             list-style: none;
-
+            
+            &.show{
+                display: block;
+            }
+            
             li{
-                padding: .25rem .25rem .25rem 2rem;
-                border-bottom: 1px solid $color-light;
+                display: flex;
+                align-items: center;
+                margin: 1rem 0;
+                padding: .25rem 1rem;
+                border: 1px solid rgba(0,0,0,0.1);
+                border-radius: 10px;
+                cursor: pointer;
 
-                &:last-child{ border-bottom: 0px }
+                &:hover{
+                    border-color: $color-main;
+                }
 
+                input{
+                    margin-right: 1rem;
+                }
             }
         }
     }

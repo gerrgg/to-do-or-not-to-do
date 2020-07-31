@@ -1,15 +1,16 @@
-$sidebar-bg-color: #f7f7f7;
+$sidebar-bg-color: #f7f7f7;;
+$inner-bg-color: rgba(0,0,0,0.1);
 
-$text-color-light-dark: #555;
-
-$color-dark: #333;
+$color-dark: #3D2B3D;
+$color-light-dark: #555;
 $color-light: #fff;
 
-$color-main: #E18F8F;
-$color-secondary: #0874b5;
+$color-main: #D56F3E;
+$color-secondary: #9B1D20;
 
 $light-grey: rgba(0,0,0,0.1);
 
+$box-shadow-light: 1px 1px 12px rgba(0,0,0,0.1);
 
 .color-main{
     color: $color-main;
