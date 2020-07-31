@@ -1,7 +1,16 @@
 const projects = ( element ) => {
    //
     let list = {
-        default: project( 'default', 'A test', [ 'make more todos' ] )
+        default: project( 
+            'Build TODO Application', 
+            'Build the best damn todo list application driven by modern javascript and bundled with webpack.js', 
+            [ 
+                'Make todo\'s collapseable', 
+                'Give projects a priority attribute and color option', 
+                'Allow todos to be created, edited, deleted and marked complete',
+                'add a progress bar as items are checked off',
+            ] 
+        )
     }
 
     const render = () => {
