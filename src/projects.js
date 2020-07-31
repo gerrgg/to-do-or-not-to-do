@@ -1,16 +1,20 @@
+import { todo } from './todo'
+
 const projects = ( element ) => {
    //
     let list = {
+
         default: project( 
             'Build TODO Application', 
             'Build the best damn todo list this side of the mississippi.', 
             [ 
-                'Make todo\'s collapseable', 
-                'Give projects a priority attribute and color option', 
-                'Allow todos to be created, edited, deleted and marked complete',
-                'add a progress bar as items are checked off',
+                todo('Make todo\'s collapseable'),
+                todo('Give projects a priority attribute and color option'), 
+                todo('Allow todos to be created, edited, deleted and marked complete'),
+                todo('add a progress bar as items are checked off'),
             ] 
         )
+
     }
 
     const render = () => {
@@ -51,20 +55,7 @@ const projects = ( element ) => {
         unorderedList.className = 'todos'
         
         // For each todo, create a list item
-        todos.forEach( todo  => {
-            let listItem = document.createElement('li')
-            let checkbox = document.createElement('input')
-            checkbox.type = 'checkbox'
-
-            // add the text
-            listItem.innerText = todo
-
-            // add the checkbox
-            listItem.prepend( checkbox )
-            
-            //add to UL
-            unorderedList.append(listItem)
-        });
+        todos.forEach( todo  => { unorderedList.append( todo.listItem ) } );
 
         return unorderedList;
     }
@@ -132,5 +123,7 @@ const project = ( name, description, todos = [] ) => {
      */
     return { name, description, todos }
 };
+
+
 
 export { projects }
