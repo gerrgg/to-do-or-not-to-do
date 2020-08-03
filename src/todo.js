@@ -54,24 +54,40 @@ const todo = ( task ) => {
          * Edit the todo by replacing the span with an input and enter button
          */
 
+        let wrapper = document.createElement('div')
+        wrapper.style = "z-index: 10;position: absolute;display: flex;"
+
         // create the input for typing the new 
         let input = document.createElement('input')
         input.type = 'text'
+
+        // set the inputs value to the current task
         input.value = taskWrapper.innerText
 
         // create the accept button for commiting an edit
         let accept = document.createElement('i')
         accept.className = 'far fa-check-circle'
-        accept.addEventListener( 'click', maybeChangeTask )
-
         
-        taskWrapper.innerHTML = '';
-        taskWrapper.append( input, accept )
-        input.focus()
+        // temporary element which will be deleted on update
+        wrapper.append( input, accept )
+        
+        // put the input and accept button above the task - z-index higher
+        taskWrapper.append( wrapper )
+
+
+        accept.addEventListener( 'click', maybeChangeTask )
     }
 
     const maybeChangeTask = ( e ) => {
-        console.log( 'hi', e )
+        /**
+         * Update the todo if input value has changed and not blank
+         */
+        let input = e.target.previousSibling
+
+        // if attempted edit not blank or unchanged
+        if( input.value != '' && input.value != taskWrapper.innerText ){
+            taskWrapper.innerText = input.value
+        }
     }
 
     const deleteTodo = () =>{
@@ -93,6 +109,7 @@ const todo = ( task ) => {
             listItem.classList.remove('complete')
         }
     }
+
 
 
     // setup
