@@ -74,7 +74,6 @@ const todo = ( task ) => {
         // put the input and accept button above the task - z-index higher
         taskWrapper.append( wrapper )
 
-
         accept.addEventListener( 'click', maybeChangeTask )
     }
 
@@ -85,9 +84,13 @@ const todo = ( task ) => {
         let input = e.target.previousSibling
 
         // if attempted edit not blank or unchanged
-        if( input.value != '' && input.value != taskWrapper.innerText ){
+        if( input.value != '' ){
             taskWrapper.innerText = input.value
+        } else {
+            input.parentNode.remove()
         }
+
+        // SAVE THE CHANGE
     }
 
     const deleteTodo = () =>{
