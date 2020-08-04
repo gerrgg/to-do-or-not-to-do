@@ -2,7 +2,6 @@ const todo = ( task ) => {
     /**
      * A todo element with the ability to edit, delete and be marked complete
      */
-
     const createControls = () => {
         /**
          * Creates the DOM which handles edit and delete functions
@@ -54,6 +53,8 @@ const todo = ( task ) => {
          * Edit the todo by replacing the span with an input and enter button
          */
 
+        let taskWrapper = e.target.parentElement.previousSibling
+        
         let wrapper = document.createElement('div')
         wrapper.style = "z-index: 10;position: absolute;display: flex;"
 
@@ -81,11 +82,16 @@ const todo = ( task ) => {
         /**
          * Update the todo if input value has changed and not blank
          */
-        let input = e.target.previousSibling
+
+        let taskWrapper = e.target.parentElement.parentElement
+        let input = e.target.parentElement.firstChild
 
         // if attempted edit not blank or unchanged
         if( input.value != '' ){
             taskWrapper.innerText = input.value
+            
+            parent.dispatchEvent( new Event('update') )
+            
         } else {
             input.parentNode.remove()
         }
@@ -113,26 +119,31 @@ const todo = ( task ) => {
         }
     }
 
+    const getListItem = () => {
 
+        // create wrapper
+        let listItem = document.createElement('li')
+    
+        // create checkbox
+        let checkbox = createCheckbox();
+    
+        // create controls
+        let controls = createControls();
+        
+        // set task to checkbox, tast and todo controls
+        let taskWrapper = createTaskWrapper();
+
+        listItem.append( checkbox, taskWrapper, controls )
+
+        return listItem
+    }
 
     // setup
     let complete = false;
+    let listItem = getListItem()
 
-    // create wrapper
-    let listItem = document.createElement('li')
 
-    // create checkbox
-    let checkbox = createCheckbox();
-
-    // create controls
-    let controls = createControls();
-    
-    // set task to checkbox, tast and todo controls
-    let taskWrapper = createTaskWrapper();
-
-    listItem.append( checkbox, taskWrapper, controls )
-
-    return { listItem }
+    return { getListItem, task }
 }
 
 export { todo }

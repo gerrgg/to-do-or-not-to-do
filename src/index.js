@@ -3,5 +3,5 @@ require('./dom')
 
 
 const application = (() => {
-    let projectsTab = projects( document.getElementById('lists') );
+    let projectsTab = projects( document.getElementById('projects-inner') );
 })();

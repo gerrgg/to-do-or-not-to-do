@@ -1,32 +1,47 @@
 import { todo } from './todo'
 
 const projects = ( element ) => {
-   //
-    let list = {
+    
 
-        default: project( 
-            'Build TODO Application', 
-            'Build the best damn todo list this side of the mississippi.', 
-            [ 
-                todo('Make todo\'s collapseable'),
-                todo('Give projects a priority attribute and color option'), 
-                todo('Allow todos to be created, edited, deleted and marked complete'),
-                todo('add a progress bar as items are checked off'),
-            ] 
-        )
-
+    const getProjects = () => {
+        /**
+         * If the user has a saved set of projects get that else return the default project
+         */
+        let projects = ( localStorage.getItem('myProjects') === null ) ? getDefaultProject() : JSON.parse( localStorage.getItem('myProjects') )
+        return projects;
     }
 
-    const render = () => {
+    const getDefaultProject = () => {
+        /**
+         * Get a pre-built project if user has not created any
+         */
+        return {
+            default: project( 
+                'Build TODO Application', 
+                'Build the best damn todo list this side of the mississippi.', 
+                [ 
+                    todo('Make todo\'s collapseable'),
+                    todo('Give projects a priority attribute and color option'), 
+                    todo('Allow todos to be created, edited, deleted and marked complete'),
+                    todo('add a progress bar as items are checked off'),
+                ] 
+            )
+        }
+    }
+
+    const render = ( list ) => {
         /**
          * Generate the HTML and append parent element
          */
+        element.innerText = ""
+        
         for( let key in list ){
             // get object
             let project = list[key]
             
             // create project wrapper
             let wrapper = document.createElement('div')
+            wrapper.id = key + '-project'
             wrapper.className = 'project'
             
             // Create the header HTML
@@ -37,6 +52,8 @@ const projects = ( element ) => {
 
             // Put them together
             wrapper.append( header, unorderedList )
+
+            wrapper.addEventListener( 'update', update )
 
             // Add to element
             element.appendChild( wrapper )
@@ -55,7 +72,9 @@ const projects = ( element ) => {
         unorderedList.className = 'todos'
         
         // For each todo, create a list item
-        todos.forEach( todo  => { unorderedList.append( todo.listItem ) } );
+        todos.forEach( todo  => { 
+            unorderedList.append( todo.getListItem() ) 
+        } );
 
         return unorderedList;
     }
@@ -76,7 +95,7 @@ const projects = ( element ) => {
         
         // create p and set innerText to project description
         let description = document.createElement('p')
-        description.innerText = ' - ' + project.description
+        description.innerText = project.description
 
         // add the h3 and p to wrapper
         header.append( heading, description )
@@ -110,7 +129,42 @@ const projects = ( element ) => {
 
     }
 
-    render()
+    const update = ( e ) => {
+        /**
+         * Update the project object with the new edit
+         */
+        let i = 0;
+
+        // use the projects id to find which project object to edit
+        let key = e.target.id.replace( '-project', '' )
+        let projectObject = list[key];
+
+        // use the dom to recreate the object
+        let header = e.target.children[0].children[0].innerText
+        let description = e.target.children[0].children[1].innerText
+        let todos = e.target.children[1]
+
+        projectObject.name = header
+        projectObject.description = description
+
+        for( let todoElement of todos.children ){
+            projectObject.todos[i] = todo( todoElement.innerText )
+            i++;
+        }
+
+        list[key] = projectObject
+
+        saveProject()
+        render(list)
+    }
+
+    const saveProject = () => { 
+        localStorage.setItem( 'myProjects', JSON.stringify(list) ) 
+    }
+
+    
+    let list = getProjects()
+    render( list )
 
 };
 
