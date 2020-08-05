@@ -7,8 +7,18 @@ const projects = ( element ) => {
         /**
          * If the user has a saved set of projects get that else return the default project
          */
-        let projects = ( localStorage.getItem('myProjects') === null ) ? getDefaultProject() : JSON.parse( localStorage.getItem('myProjects') )
-        return projects;
+        let myProjects;
+
+        if( localStorage.getItem('myProjects') === null ) {
+            myProjects = getDefaultProject() 
+        } else {
+            let data = JSON.parse( localStorage.getItem('myProjects') )
+            console.log( data )
+            
+            // figure out how to save here
+        } 
+
+        return myProjects;
     }
 
     const getDefaultProject = () => {
@@ -73,7 +83,7 @@ const projects = ( element ) => {
         
         // For each todo, create a list item
         todos.forEach( todo  => { 
-            unorderedList.append( todo.getListItem() ) 
+            unorderedList.append( todo.listItem ) 
         } );
 
         return unorderedList;
@@ -158,9 +168,7 @@ const projects = ( element ) => {
         render(list)
     }
 
-    const saveProject = () => { 
-        localStorage.setItem( 'myProjects', JSON.stringify(list) ) 
-    }
+    const saveProject = () => { localStorage.setItem( 'myProjects', JSON.stringify(list) ) }
 
     
     let list = getProjects()

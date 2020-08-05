@@ -83,13 +83,12 @@ const todo = ( task ) => {
          * Update the todo if input value has changed and not blank
          */
 
-        let taskWrapper = e.target.parentElement.parentElement
         let input = e.target.parentElement.firstChild
+        let parent = listItem.parentElement.parentElement
 
         // if attempted edit not blank or unchanged
         if( input.value != '' ){
             taskWrapper.innerText = input.value
-            
             parent.dispatchEvent( new Event('update') )
             
         } else {
@@ -119,31 +118,26 @@ const todo = ( task ) => {
         }
     }
 
-    const getListItem = () => {
 
-        // create wrapper
-        let listItem = document.createElement('li')
-    
-        // create checkbox
-        let checkbox = createCheckbox();
-    
-        // create controls
-        let controls = createControls();
-        
-        // set task to checkbox, tast and todo controls
-        let taskWrapper = createTaskWrapper();
-
-        listItem.append( checkbox, taskWrapper, controls )
-
-        return listItem
-    }
 
     // setup
     let complete = false;
-    let listItem = getListItem()
 
+    // create wrapper
+    let listItem = document.createElement('li')
+        
+    // create checkbox
+    let checkbox = createCheckbox();
 
-    return { getListItem, task }
+    // create controls
+    let controls = createControls();
+    
+    // set task to checkbox, tast and todo controls
+    let taskWrapper = createTaskWrapper();
+
+    listItem.append( checkbox, taskWrapper, controls )
+
+    return { listItem, task }
 }
 
 export { todo }
